@@ -5,16 +5,7 @@ module GenomeAnnotations
  using Base.Intrinsics
  importall Base
 
-# downloads to a local store geneAnnotations and processes them into a state that is amenable
-# setup_genome_annotatons
-# setup_annotations
-# make the store directory and files
-
-# install_annotation("mm10","gene")
-
-# list_installed
-
-# list organisms to install
+# makes local store .GenomeAnnotations.jl/annotation for GenomeAnnotations
 
 export setup_genome_annotations
 export install_ucsc_annotation
@@ -29,4 +20,4 @@ include(Pkg.dir("GenomeAnnotations","src","Config.jl"))
 include(Pkg.dir("GenomeAnnotations","src","Store.jl"))
 include(Pkg.dir("GenomeAnnotations","src","UCSCGB.jl"))
 include(Pkg.dir("GenomeAnnotations","src","Gencode.jl"))
-end # module
+end
