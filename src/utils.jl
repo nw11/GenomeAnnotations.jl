@@ -1,3 +1,4 @@
+# change this so it works on windows
 function download_with_curl(  url, dest)
     println("Running curl_cmd")
     if !isfile(dest)

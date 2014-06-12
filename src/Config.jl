@@ -114,43 +114,28 @@ end
 #
 #
 
-#function LOCAL_STORE_PATH_STATUS( )
-#    ini = Inifile()
-#    conf_path = Pkg.dir("GenomeAnnotations", "conf", "conf.ini")
-#    read(ini,conf_path)
-#    local_store_path = get(ini,"","LOCAL_STORE_PATH")
-#    if(local_store_path == "nothing")
-#         return "unset"
-#    else
-#         return "set"
-#    end
-#end
-
 function setup_ini(conf_path, test=false)
-    # implement something to account for when testing
     confdir = dirname(conf_path)
     if !isdir( confdir )
         mkpath(confdir)
         println("Made configuration directory in $confdir")
     end
     writedlm( conf_path, ["LOCAL_STORE_PATH=nothing"])
-    println("Writting configuration file in $conf_path")
+    println("Writing configuration file to $conf_path")
 end
 
 function LOCAL_STORE_PATH( conf_path = Pkg.dir("GenomeAnnotations", "conf", "conf.ini")  )
     ini = Inifile()
 
     if( !isfile(conf_path) )
+        println("No config file - setup config file")
         setup_ini(conf_path)
     end
 
     read(ini,conf_path)
-    #println("$conf_path ",ini)
 
     local_store_path = get(ini,"","LOCAL_STORE_PATH")
-    println("Local store path is currently $local_store_path")
     local_store_path = chomp(local_store_path)
-    #println("GOT PATH $local_store_path")
     if( local_store_path == "nothing" )
        local_store_path = SET_LOCAL_STORE_PATH()
        println("Set local path to $local_store_path")
@@ -160,12 +145,6 @@ end
 
 function SET_LOCAL_STORE_PATH( path = joinpath(homedir(), ".GenomeAnnotations.jl", "annotation"),
                                conf_path = Pkg.dir("GenomeAnnotations", "conf", "conf.ini"))
-     #default_path =
-
-     #if( path == "" )
-     #    path = default_path
-     #end
-
 
      ini = Inifile()
      read(ini,conf_path)

@@ -4,8 +4,13 @@ include(Pkg.dir("GenomeAnnotations","src","utils.jl"))
 function install_ucsc_annotation(organism, annotation_to_install=["ensGene"] )
 
     local_store_path = LOCAL_STORE_PATH()
-    println("make directory $organism")
+
+    if( !isdir(local_store_path) )
+        println("Local store path does not exist, run setup_genome_annotations")
+    end
+
     organism_path = joinpath( local_store_path, organism )
+    println("make directory $organism_path")
 
     if isdir(organism_path)
          println("$organism_path already exists, skip mkdir")

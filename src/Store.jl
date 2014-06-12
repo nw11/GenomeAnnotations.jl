@@ -12,10 +12,10 @@ function setup_genome_annotations( config_ini_path = Pkg.dir("GenomeAnnotations"
     # create a db description file
     db_names_file = joinpath(local_store_path,"db.names")
     if isfile(db_names_file)
+        println("$db_names_file already exists")
+    else
         touch( db_names_file )
         println("created db description file at $db_names_file")
-    else
-        println("$db_names_file already exists")
     end
 end
 
