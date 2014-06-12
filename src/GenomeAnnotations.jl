@@ -23,6 +23,7 @@ export current_annotation_files
 
 # Config.jl
 export SET_LOCAL_STORE_PATH
+export LOCAL_STORE_PATH
 
 include(Pkg.dir("GenomeAnnotations","src","Config.jl"))
 include(Pkg.dir("GenomeAnnotations","src","Store.jl"))
