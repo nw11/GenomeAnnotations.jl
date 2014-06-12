@@ -1,11 +1,9 @@
 # Install/Manage Genome Annotations
-# currently downloads annotation files to a local space
+# currently downloads annotation files to a local store .GenomeAnnotations.jl/annotations
 
 module GenomeAnnotations
  using Base.Intrinsics
  importall Base
-
-# makes local store .GenomeAnnotations.jl/annotation for GenomeAnnotations
 
 export setup_genome_annotations
 export install_ucsc_annotation
