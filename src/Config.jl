@@ -128,13 +128,19 @@ end
 
 function setup_ini(conf_path, test=false)
     # implement something to account for when testing
+    confdir = dirname(conf_path)
+    if !isdir( confdir )
+        mkpath(confdir)
+        println("Made configuration directory in $confdir")
+    end
     writedlm( conf_path, ["LOCAL_STORE_PATH=nothing"])
+    println("Writting configuration file in $conf_path")
 end
 
 function LOCAL_STORE_PATH( conf_path = Pkg.dir("GenomeAnnotations", "conf", "conf.ini")  )
     ini = Inifile()
 
-    if( ! isfile(conf_path) )
+    if( !isfile(conf_path) )
         setup_ini(conf_path)
     end
 
